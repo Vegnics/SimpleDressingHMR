@@ -33,7 +33,7 @@ For comments or questions, please email us at: d12922028@ntu.edu.tw
 
 System Requirements:
 ====================
-Operating system: Linux (>=20.0)
+Operating system: Linux (Ubuntu 20.04 is preferred)
 
 Python version: 3.10.0
 
