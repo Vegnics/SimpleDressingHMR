@@ -2,14 +2,19 @@
 # they are not included in the repository. You can run this Shell script to download
 # and place the models in the right folder.  
 
-# Ultralytics Human Pose Estimation model 
+# Ultralytics Human Pose Estimation model
+echo "Downloading Ultralytics pre-trained model ..."
+mkdir -p ./ultralytics 
 wget https://github.com/Vegnics/SimpleDressingHMR/releases/download/v0.0.1/yolov8l-pose.pt
 mv yolov8l-pose.pt ./ultraytics/.
 
 #-----------------------------------------------------------------------------------
 
 # SMPL models (female, male, neutral | 10 PCs)
+mkdir -p ./smpl/models
+mkdir -p ./smpl/models/smpl
 
+echo "Downloading SMPL models ..."
 # Female
 wget https://github.com/Vegnics/SimpleDressingHMR/releases/download/v0.0.1/basicmodel_f_lbs_10_207_0_v1.0.0.pkl
 mv ./basicmodel_f_lbs_10_207_0_v1.0.0.pkl ./smpl/models/smpl/.
@@ -27,6 +32,8 @@ mv ./basicmodel_neutral_lbs_10_207_0_v1.1.0.pkl ./smpl/models/smpl/.
 
 # HMR pre-trained models
 
+mkdir -p ./SMPL_estimator/trained_models/
+echo "Downloading HMR pre-trained models ..."
 # Total capture - paired (most accurate)
 wget https://github.com/Vegnics/SimpleDressingHMR/releases/download/v0.0.1/total_capture_model_paired.zip
 mv ./total_capture_model_paired.zip ./SMPL_estimator/trained_models/.
@@ -45,4 +52,5 @@ mv ./base_model.zip ./SMPL_estimator/trained_models/.
 unzip ./SMPL_estimator/trained_models/base_model.zip -d ./SMPL_estimator/trained_models/.
 rm -f ./SMPL_estimator/trained_models/base_model.zip
 
+echo "Done!"
 
