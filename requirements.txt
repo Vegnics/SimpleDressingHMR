@@ -1,0 +1,10 @@
+opencv-python==4.9.0
+scipy==1.13.0
+torchvision==0.18
+iopath == 0.1.10
+tensorflow == 2.10.0
+numpy==1.23.5
+chumpy==0.70
+imageio==2.34.1
+ultralytics==8.1.0
+open3d==0.18.0

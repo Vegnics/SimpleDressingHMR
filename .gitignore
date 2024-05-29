@@ -1,0 +1,12 @@
+SMPL_estimator/trained_models/base_model/
+SMPL_estimator/trained_models/total_capture_model/
+SMPL_estimator/trained_models/total_capture_model_paired/
+SMPL_estimator/__pycache__
+smpl/__pycache__
+DEPRECATED/
+SMPL_estimator_SPIN/
+videos/*
+ultralytics/*.pt
+utils/__pycache__/
+scripts/__pycache__
+smpl/models/smpl/*
