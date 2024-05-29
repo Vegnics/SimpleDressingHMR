@@ -52,5 +52,7 @@ mv ./base_model.zip ./SMPL_estimator/trained_models/.
 unzip ./SMPL_estimator/trained_models/base_model.zip -d ./SMPL_estimator/trained_models/.
 rm -f ./SMPL_estimator/trained_models/base_model.zip
 
+mkdir -p ./videos
+
 echo "Done!"
 

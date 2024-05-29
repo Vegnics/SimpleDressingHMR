@@ -1,4 +1,4 @@
-opencv-python==4.9.0
+opencv-python==4.9.0.80
 scipy==1.13.0
 torchvision==0.18
 iopath == 0.1.10

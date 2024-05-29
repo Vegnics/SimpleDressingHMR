@@ -101,10 +101,10 @@ if __name__ == '__main__':
     retwrite = False
 
     pose_filter = EMA_filter(0.95,0.8,0.6,vtype="pose")
-    beta_filter = EMA_filter(0.95) #0.9
-    vertex_filter = EMA_filter(0.6,vtype="vertex") #0.7
+    beta_filter = EMA_filter(0.9) #0.9
+    vertex_filter = EMA_filter(0.4,vtype="vertex") #0.7
 
-    smpl_model = SMPL_mesh(model_type="neutral")
+    smpl_model = SMPL_mesh(model_type="female")
 
     while cam.isOpened():
         ret,img = cam.read()
