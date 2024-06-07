@@ -53,6 +53,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+
     # Load the indices of the triangles to be removed from the the computed triangle mesh
     with open("./smpl/body_segmentation/removed_triangles.json","r") as file:
         removed_triangles = json.load(file)
@@ -114,7 +115,8 @@ if __name__ == '__main__':
 
             # Human Pose estimation
             landmark_results = posemodel(img,stream=False)
-            kpts = np.float64(landmark_results[0].keypoints.data.numpy()[0,:,:])
+            landmark_results = landmark_results[0].cpu()
+            kpts = np.float64(landmark_results.keypoints.data.numpy()[0,:,:])
             
             # Crop the input frame according to the detected keypoints
             crop_img = optimal_crop_from_kpts(img,kpts)

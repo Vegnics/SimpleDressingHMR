@@ -50,9 +50,10 @@ if __name__ == '__main__':
     # Human Pose estimation
     posemodel = YOLO("ultralytics/yolov8l-pose.pt")
     landmark_results = posemodel(img,stream=False)
-    kpts = np.float64(landmark_results[0].keypoints.data.numpy()[0,:,:])
+    landmark_results = landmark_results[0].cpu()
+    kpts = np.float64(landmark_results.keypoints.data.numpy()[0,:,:])
 
-     # Crop the input frame according to the detected keypoints
+    # Crop the input frame according to the detected keypoints
     cropped_img = optimal_crop_from_kpts(img,kpts)
 
     # Pre-process the cropped image and apply HMR
