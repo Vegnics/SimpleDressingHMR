@@ -1,3 +1,7 @@
+"""
+Adapted from hmr2.0: https://github.com/russoale/hmr2.0/tree/master
+"""
+
 # Base Configuration Class
 # Don't use this class directly. Instead, sub-class it and override
 # the configurations you need to change.
@@ -8,15 +12,15 @@ from datetime import datetime
 import os
 
 
-class Config(object):
+class HMRConfig(object):
     __instance = None
 
     def __new__(cls):
-        if Config.__instance is None:
-            Config.__instance = object.__new__(cls)
-            Config.__instance.__initialized = False
+        if HMRConfig.__instance is None:
+            HMRConfig.__instance = object.__new__(cls)
+            HMRConfig.__instance.__initialized = False
 
-        return Config.__instance
+        return HMRConfig.__instance
 
     # ------Directory settings:------
     #
@@ -327,4 +331,4 @@ class Config(object):
             return None
 
     def reset(self):
-        Config.__instance = None
+        HMRConfig.__instance = None

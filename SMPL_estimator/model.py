@@ -1,3 +1,7 @@
+"""
+Adapted from hmr2.0: https://github.com/russoale/hmr2.0/tree/master
+"""
+
 import os
 import sys
 import time
@@ -22,7 +26,7 @@ try:
 except:  # noqa E722
     from tqdm import tqdm
 
-from SMPL_estimator.config import Config
+from SMPL_estimator.config import HMRConfig
 from SMPL_estimator.dataset import Dataset
 from SMPL_estimator.discriminator import Discriminator
 from SMPL_estimator.generator import Generator
@@ -55,10 +59,10 @@ class ExceptionHandlingIterator:
             return self.__next__()
 
 
-class Model:
+class HMRModel:
 
     def __init__(self, display_config=True):
-        self.config = Config()
+        self.config = HMRConfig()
         self.config.save_config()
         if display_config:
             self.config.display()
@@ -473,13 +477,12 @@ class Model:
         result = self.generator(image, training=False)
 
         vertices_pred, kp2d_pred, kp3d_pred, pose_pred, shape_pred, cam_pred,rpose_shape = result[-1]
-        print("Saving OBJ from generator")
-        #self.generator.smpl.save_obj(vertices_pred,"mynewmesh")
+
         result_dict = {
-            "vertices": tf.squeeze(vertices_pred),
-            "kp2d": tf.squeeze(kp2d_pred),
-            "kp3d": tf.squeeze(kp3d_pred),
-            "pose": tf.squeeze(pose_pred),
+            #"vertices": tf.squeeze(vertices_pred),
+            #"kp2d": tf.squeeze(kp2d_pred),
+            #"kp3d": tf.squeeze(kp3d_pred),
+            #"pose": tf.squeeze(pose_pred),
             "shape": tf.squeeze(shape_pred),
             "cam": tf.squeeze(cam_pred),
             "pose_shape": tf.squeeze(rpose_shape)
@@ -488,5 +491,5 @@ class Model:
 
 
 if __name__ == '__main__':
-    model = Model()
+    model = HMRModel()
     model.train()

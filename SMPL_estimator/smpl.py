@@ -1,3 +1,7 @@
+"""
+Adapted from hmr2.0: https://github.com/russoale/hmr2.0/tree/master
+"""
+
 import pickle
 from os.path import join
 
@@ -5,7 +9,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras import layers
 
-from SMPL_estimator.config import Config
+from SMPL_estimator.config import HMRConfig
 from SMPL_estimator.model_util import batch_rodrigues, batch_global_rigid_transformation
 
 
@@ -15,7 +19,7 @@ class Smpl(layers.Layer):
     def __init__(self):
         super(Smpl, self).__init__()
 
-        self.config = Config()
+        self.config = HMRConfig()
         if self.config.JOINT_TYPE not in ['cocoplus', 'lsp', 'custom']:
             raise Exception('unknow joint type: {}, it must be either cocoplus or lsp'.format(self.config.JOINT_TYPE))
 

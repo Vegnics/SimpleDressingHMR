@@ -1,16 +1,20 @@
+"""
+Adapted from hmr2.0: https://github.com/russoale/hmr2.0/tree/master
+"""
+
 from glob import glob
 from os.path import join
 from time import time
 
 import tensorflow as tf
 
-from SMPL_estimator.config import Config
+from SMPL_estimator.config import HMRConfig
 
 
 class Dataset(object):
 
     def __init__(self):
-        self.config = Config()
+        self.config = HMRConfig()
         if self.config.JOINT_TYPE == 'cocoplus':
             # flipping ids for lsp with coco
             self.flip_ids_kp2d = tf.constant([5, 4, 3, 2, 1, 0, 11, 10, 9, 8, 7, 6, 12, 13, 14, 16, 15, 18, 17])

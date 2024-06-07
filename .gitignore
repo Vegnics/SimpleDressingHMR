@@ -5,8 +5,10 @@ SMPL_estimator/__pycache__
 smpl/__pycache__
 DEPRECATED/
 SMPL_estimator_SPIN/
-videos/*
+videos/justme/*
 ultralytics/*.pt
 utils/__pycache__/
 scripts/__pycache__
 smpl/models/smpl/*
+scripts/plotit.py
+scripts/wireframe_n_joints.py

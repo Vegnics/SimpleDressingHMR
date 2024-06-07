@@ -1,11 +1,11 @@
 import os
 from datetime import datetime
 
-from SMPL_estimator.config import Config
-from SMPL_estimator.model import Model
+from SMPL_estimator.config import HMRConfig
+from SMPL_estimator.model import HMRModel
 
 
-class LocalConfig(Config):
+class LocalConfig(HMRConfig):
     ROOT_DATA_DIR = os.path.abspath(os.path.join(__file__, '..', '..', '..'))
 
     LOG_DIR = os.path.join(ROOT_DATA_DIR, 'logs', datetime.now().strftime("%d%m%Y-%H%M%S"))
@@ -37,5 +37,5 @@ class LocalConfig(Config):
 if __name__ == '__main__':
     LocalConfig()
 
-    model = Model()
+    model = HMRModel()
     model.train()

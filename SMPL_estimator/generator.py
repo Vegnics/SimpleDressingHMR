@@ -1,9 +1,13 @@
+"""
+Adapted from hmr2.0: https://github.com/russoale/hmr2.0/tree/master
+"""
+
 import tensorflow as tf
 from tensorflow.keras import layers
 from tensorflow.keras.applications.resnet_v2 import ResNet50V2
 
 import SMPL_estimator.model_util as model_util
-from SMPL_estimator.config import Config
+from SMPL_estimator.config import HMRConfig
 from SMPL_estimator.smpl import Smpl
 
 
@@ -11,7 +15,7 @@ class Regressor(tf.keras.Model):
 
     def __init__(self):
         super(Regressor, self).__init__(name='regressor')
-        self.config = Config()
+        self.config = HMRConfig()
 
         self.mean_theta = tf.Variable(model_util.load_mean_theta(), name='mean_theta', trainable=True)
 
@@ -52,7 +56,7 @@ class Generator(tf.keras.Model):
 
     def __init__(self):
         super(Generator, self).__init__(name='generator')
-        self.config = Config()
+        self.config = HMRConfig()
 
         self.enc_shape = self.config.ENCODER_INPUT_SHAPE
         self.resnet50V2 = ResNet50V2(include_top=False, weights='imagenet', input_shape=self.enc_shape, pooling='avg')
@@ -83,13 +87,11 @@ class Generator(tf.keras.Model):
                 setattr(layer, 'momentum', 0.997)
                 setattr(layer, 'epsilon', 1e-5)
             if isinstance(layer, layers.MaxPooling2D):
-                #if(layer.name=="pool1_pool"):
                 setattr(layer, 'padding', 'same')
                     
     def call(self, inputs, **kwargs):
         check = inputs.shape[1:] == self.enc_shape
         assert check, 'shape mismatch: should be {} but is {}'.format(self.enc_shape, inputs.shape)
-        print("SHAPES ",inputs.shape,self.enc_shape)
         features = self.resnet50V2(inputs, **kwargs)
         thetas = self.regressor(features, **kwargs)
         outputs = []
@@ -102,8 +104,8 @@ class Generator(tf.keras.Model):
     def _compute_output(self, theta, **kwargs):
         cams = theta[:, :self.config.NUM_CAMERA_PARAMS]
         pose_and_shape = theta[:, self.config.NUM_CAMERA_PARAMS:]
-        vertices, joints_3d, rotations = self.smpl(pose_and_shape, **kwargs)
-        joints_2d = model_util.batch_orthographic_projection(joints_3d, cams)
+        #vertices, joints_3d, rotations = self.smpl(pose_and_shape, **kwargs)
+        #joints_2d = model_util.batch_orthographic_projection(joints_3d, cams)
         shapes = theta[:, -self.config.NUM_SHAPE_PARAMS:]
-
-        return tf.tuple([vertices, joints_2d, joints_3d, rotations, shapes, cams, pose_and_shape])
+        #return tf.tuple([vertices, joints_2d, joints_3d, rotations, shapes, cams, pose_and_shape])
+        return tf.tuple(["", "", "", "", shapes, cams, pose_and_shape])

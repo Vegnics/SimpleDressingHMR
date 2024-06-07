@@ -1,8 +1,12 @@
+"""
+Adapted from hmr2.0: https://github.com/russoale/hmr2.0/tree/master
+"""
+
 import h5py
 import numpy as np
 import tensorflow as tf
 
-from SMPL_estimator.config import Config
+from SMPL_estimator.config import HMRConfig
 
 
 def batch_compute_similarity_transform(real_kp3d, pred_kp3d):
@@ -102,7 +106,7 @@ def batch_skew_symmetric(vector):
     Returns:
         skew_symm: [batch x (K + 1) x 3 x 3]
     """
-    config = Config()
+    config = HMRConfig()
     batch_size = vector.shape[0] or config.BATCH_SIZE
     num_joints = config.NUM_JOINTS_GLOBAL
 
@@ -130,7 +134,7 @@ def batch_rodrigues(theta):
     Returns:
         rot_mat : [batch x (K + 1) x 9] rotation matrix for every joint K
     """
-    config = Config()
+    config = HMRConfig()
     batch_size = theta.shape[0] or config.BATCH_SIZE
     num_joints = config.NUM_JOINTS_GLOBAL
 
@@ -165,7 +169,7 @@ def batch_global_rigid_transformation(rot_mat, joints, ancestors, rotate_base=Fa
         new_joints  : [batch x (K + 1) x 3] location of absolute joints
         rel_joints  : [batch x (K + 1) x 4 x 4] relative joint transformations for LBS.
     """
-    config = Config()
+    config = HMRConfig()
     batch_size = rot_mat.shape[0] or config.BATCH_SIZE
     num_joints = config.NUM_JOINTS_GLOBAL
 
@@ -229,7 +233,7 @@ def load_mean_theta():
     Returns:
         mean: [batch x 85]
     """
-    config = Config()
+    config = HMRConfig()
     print(config.SMPL_MEAN_THETA_PATH)
     mean_values = h5py.File(config.SMPL_MEAN_THETA_PATH, mode='r', libver='earliest')
     mean = np.zeros((1, config.NUM_SMPL_PARAMS))

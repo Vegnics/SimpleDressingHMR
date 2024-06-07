@@ -1,7 +1,12 @@
+"""
+Adapted from hmr2.0: https://github.com/russoale/hmr2.0/tree/master
+"""
+
+
 import tensorflow as tf
 from tensorflow.keras import layers
 
-from SMPL_estimator.config import Config
+from SMPL_estimator.config import HMRConfig
 
 
 class CommonPoseDiscriminator(tf.keras.Model):
@@ -12,7 +17,7 @@ class CommonPoseDiscriminator(tf.keras.Model):
 
     def __init__(self):
         super(CommonPoseDiscriminator, self).__init__(name='common_pose_discriminator')
-        self.config = Config()
+        self.config = HMRConfig()
 
         l2_regularizer = tf.keras.regularizers.l2(self.config.DISCRIMINATOR_WEIGHT_DECAY)
         conv_2d_params = {
@@ -49,7 +54,7 @@ class SingleJointDiscriminator(tf.keras.Model):
 
     def __init__(self):
         super(SingleJointDiscriminator, self).__init__(name='single_joint_discriminator')
-        self.config = Config()
+        self.config = HMRConfig()
 
         l2_regularizer = tf.keras.regularizers.l2(self.config.DISCRIMINATOR_WEIGHT_DECAY)
         self.joint_discriminators = []
@@ -77,7 +82,7 @@ class FullPoseDiscriminator(tf.keras.Model):
 
     def __init__(self):
         super(FullPoseDiscriminator, self).__init__(name='full_pose_discriminator')
-        self.config = Config()
+        self.config = HMRConfig()
 
         l2_regularizer = tf.keras.regularizers.l2(self.config.DISCRIMINATOR_WEIGHT_DECAY)
         self.flatten = layers.Flatten()
@@ -106,7 +111,7 @@ class FullPoseDiscriminator(tf.keras.Model):
 class ShapeDiscriminator(tf.keras.Model):
     def __init__(self):
         super(ShapeDiscriminator, self).__init__(name='shape_discriminator')
-        self.config = Config()
+        self.config = HMRConfig()
 
         l2_regularizer = tf.keras.regularizers.l2(self.config.DISCRIMINATOR_WEIGHT_DECAY)
         self.fc_one = layers.Dense(10, kernel_regularizer=l2_regularizer, name="fc_0")
@@ -134,7 +139,7 @@ class Discriminator(tf.keras.Model):
 
     def __init__(self):
         super(Discriminator, self).__init__(name='discriminator')
-        self.config = Config()
+        self.config = HMRConfig()
 
         self.common_pose_discriminator = CommonPoseDiscriminator()
         self.single_joint_discriminator = SingleJointDiscriminator()
