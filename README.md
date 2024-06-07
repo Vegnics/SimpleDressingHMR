@@ -21,7 +21,7 @@ The original SMPL models can be found at: http://smpl.is.tue.mpg/downloads
 
 More Human Pose Estimation models can be downloaded from the Ultralytics website: https://docs.ultralytics.com/tasks/pose/
 
-Check the repo about HMR (*Domain Analysis of End-to-end Recovery of Human Shape and Pose*), from Alessandro Russo, at 
+Check the repo about HMR (*Domain Analysis of End-to-end Recovery of Human Shape and Pose*), from Alessandro Russo, at: https://github.com/russoale/hmr2.0
 
 The textures employed in this project were taken from the **SMPLitex** project. Check its website to download more interesting textures: https://dancasas.github.io/projects/SMPLitex/SMPLitex-dataset.html
  
