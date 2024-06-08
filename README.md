@@ -40,6 +40,12 @@ System Requirements:
 ====================
 Operating system: Linux (Ubuntu 20.04 is preferred)
 
+This project requires a recent GPU with support for OpenGL 4.1 or higher. In case you want to use CPU for rendering:
+
+	#from the command line (Ubuntu 20.04+)
+	EGL_PLATFORM=surfaceless
+	python scripts/....
+
 Python version: 3.10.0
 
 Python Dependencies:
