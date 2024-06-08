@@ -40,11 +40,10 @@ System Requirements:
 ====================
 Operating system: Linux (Ubuntu 20.04 is preferred)
 
-This project requires a recent GPU with support for OpenGL 4.1 or higher. In case you want to use CPU for rendering:
+This project requires a recent GPU with support for OpenGL 4.1 or higher. Open3D has also a version for rendering using CPU. In any case, check you have installed OpenGL:
 
-	#from the command line (Ubuntu 20.04+)
-	EGL_PLATFORM=surfaceless
-	python scripts/....
+	sudo apt install freeglut3
+	sudo apt install freeglut3-dev
 
 Python version: 3.10.0
 
