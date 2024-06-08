@@ -68,12 +68,16 @@ Getting Started:
 	conda create -n icg24 python=3.10.0
 	conda activate icg24
 
-3. Download (install) the pre-trained models
+3. Install unzip
+-------------------------
+	sudo apt install unzip
+
+4. Download (install) the pre-trained models
 ----------------------
 	chmod +x ./get_models.sh
 	bash ./get_models.sh
 
-4. Install the python library dependencies
+5. Install the python library dependencies
 ----------------------
 	python -m pip install -r requirements.txt
 
